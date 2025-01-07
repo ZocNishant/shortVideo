@@ -1,7 +1,16 @@
 import { useRef, useState } from "react";
 import VideoFooter from "../video_footer/VideoFooter";
+import VideoSidebar from "../video_sidebar/VideoSidebar";
 
-const Video = () => {
+const Video = ({
+  url,
+  channel,
+  description,
+  likes,
+  shares,
+  messages,
+  song,
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
 
@@ -19,13 +28,13 @@ const Video = () => {
     <>
       <div className="video">
         <video
-          src="https://res.cloudinary.com/dxkxvfo2o/video/upload/
-v1608169738/video1_cvrjfm.mp4"
+          src={url}
           className="video_player"
           ref={videoRef}
           onClick={handleVideoPress}
         ></video>
-        <VideoFooter />
+        <VideoFooter channel={channel} song={song} description={description} />
+        <VideoSidebar messages={messages} likes={likes} shares={shares} />
       </div>
     </>
   );
